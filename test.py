@@ -1,13 +1,14 @@
 import pandas as pd
 
 dataset = 'data/MSR_data_cleaned.csv'
-chunksize = 10 ** 5
+second_chunk = 'data/MSR_second_chunk{}.csv'
+chunksize = 10 ** 4
 count = 0
 total = 0
-with pd.read_csv(dataset, chunksize=chunksize, low_memory=False) as reader:
+with pd.read_csv(dataset, chunksize=chunksize) as reader:
+    i = 1
     for chunk in reader:
-        vulCol = chunk['vul']
-        print(vulCol.value_counts())
+        chunk.to_csv(f'data/MSR_chunk_{i}.csv', sep=',')
+        i += 1
 
-
-print(count)
+print('finish')
