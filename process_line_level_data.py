@@ -1,12 +1,11 @@
 import pandas as pd
-from transformers import RobertaTokenizer
 from tqdm import tqdm
 
 
 FLAW_LINE = "//flaw_line_below:"
 FIX_LINE = "//fix_flaw_line_below:"
 
-data_file = "data/MSR_data_cleaned.csv"
+data_file = "./data/MSR_data_cleaned.csv"
 
 df = pd.read_csv(data_file)
 df.rename(columns={'Unnamed: 0': 'index'}, inplace=True)
@@ -94,7 +93,7 @@ df["flaw_line"] = all_flaw_line
 df["flaw_line_index"] = all_flaw_line_idx
 
 # write processed df to file
-df.to_csv("data/processed_data.csv", index=False)
+df.to_csv("./data/processed_data.csv", index=False)
 
 # TODO - descriptive statistics of the whole big-vul dataset
 write_to_file = ""
